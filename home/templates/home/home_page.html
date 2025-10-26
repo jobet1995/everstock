@@ -4,18 +4,107 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+<link rel="stylesheet" href="{% static 'css/landing_page.css' %}">
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
+{% include "navbar.html" %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Streamline Your Inventory Management</h1>
+            <p>EverStock helps businesses efficiently manage products, suppliers, and stock levels with real-time analytics and automated tracking.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Request Demo</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>Product Management</h3>
+                <p>Easily add, edit, and organize your entire product catalog with detailed information and categorization.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Supplier Tracking</h3>
+                <p>Maintain relationships with suppliers, track orders, and monitor supplier performance metrics.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Stock Analytics</h3>
+                <p>Gain insights with real-time analytics, forecasting, and customizable reports on inventory trends.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials/Logos Section -->
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Trusted by Industry Leaders</h2>
+        <div class="logos">
+            <div class="logo-item">
+                <img src="#" alt="Client Logo 1">
+            </div>
+            <div class="logo-item">
+                <img src="#" alt="Client Logo 2">
+            </div>
+            <div class="logo-item">
+                <img src="#" alt="Client Logo 3">
+            </div>
+            <div class="logo-item">
+                <img src="#" alt="Client Logo 4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>EverStock</h3>
+                <p>Inventory management solutions for modern businesses. Streamline your operations and boost efficiency.</p>
+                <div class="social-links">
+                    <a href="#"><span>FB</span></a>
+                    <a href="#"><span>TW</span></a>
+                    <a href="#"><span>IG</span></a>
+                    <a href="#"><span>LI</span></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#">Home</a>
+                <a href="#">Features</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>📧 info@everstock.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>📍 123 Business Ave, Suite 100<br>San Francisco, CA 94107</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EverStock. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 {% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'js/navbar.js' %}"></script>
+{% endblock extra_js %}

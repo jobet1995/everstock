@@ -1,5 +1,7 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.template.response import TemplateResponse
+from django.http import JsonResponse
+from django.utils.html import strip_tags
 
 from wagtail.models import Page
 
@@ -44,3 +46,41 @@ def search(request):
             "search_results": search_results,
         },
     )
+
+
+def ajax_search(request):
+    """
+    AJAX search endpoint that returns JSON results
+    """
+    search_query = request.GET.get("query", None)
+    
+    if not search_query or len(search_query.strip()) < 2:
+        return JsonResponse({
+            'results': []
+        })
+    
+    # Search
+    search_results = Page.objects.live().search(search_query)
+    
+    # Format results for JSON response
+    results = []
+    for result in search_results[:5]:  # Limit to 5 results
+        # Get search description or excerpt from content
+        excerpt = getattr(result, 'search_description', '')
+        if not excerpt and hasattr(result, 'body'):
+            # Try to get excerpt from body content if it exists
+            try:
+                excerpt = str(result.body)[:150] + '...' if len(str(result.body)) > 150 else str(result.body)
+                excerpt = strip_tags(excerpt)
+            except:
+                excerpt = ''
+        
+        results.append({
+            'title': str(result),
+            'url': result.url,
+            'excerpt': excerpt or 'No description available'
+        })
+    
+    return JsonResponse({
+        'results': results
+    })
